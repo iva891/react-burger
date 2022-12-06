@@ -1,7 +1,7 @@
 import classnames from 'classnames/bind';
 import { BurgerIcon, ListIcon, Logo, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import NavItem from './parts/nav-item';
+import NavItem from './nav-item/nav-item';
 
 import style from './app-header.module.scss';
 

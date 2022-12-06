@@ -15,12 +15,14 @@ const Item = ({ data, isTop, isBottom }) => {
     if(isTop) type = 'top';
     if(isBottom) type = 'bottom';
 
+    const isLocked = isTop || isBottom;
+
     return (
         <div className={cn('item_wrapper', 'mr-3 mb-4')}>
-            {!(isTop || isBottom) && <DragIcon type="primary" />}
+            {!isLocked && <DragIcon type="primary" />}
             <ConstructorElement
                 type={type}
-                isLocked={isTop || isBottom}
+                isLocked={isLocked}
                 text={data.name}
                 price={data.price}
                 thumbnail={data.image}
@@ -31,7 +33,7 @@ const Item = ({ data, isTop, isBottom }) => {
 };
 
 Item.propTypes = {
-    data: dataPropTypes,
+    data: dataPropTypes.isRequired,
     isTop: PropTypes.bool,
     isBottom: PropTypes.bool
 };

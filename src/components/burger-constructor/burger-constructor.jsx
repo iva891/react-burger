@@ -1,24 +1,33 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 
 import { CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import Item from "./parts/item";
-import { dataPropTypes } from '../../utils/constants';
+import Item from "./item/item";
+import { dataPropTypes, INGREDIENTS_TYPES } from '../../utils/constants';
 import style from './burger-constructor.module.scss';
 
 const cn = classnames.bind(style);
 
 const BurgerConstructor = ({ data }) => {
+    const { BUN } = INGREDIENTS_TYPES;
+
+    const bunDataElement = useMemo(() => {
+        return data.find((item) => item.type === BUN);
+    }, [BUN, data]);
+
+    const mainDataElements = useMemo(() => {
+        return data.filter((item) => item.type !== BUN);
+    }, [BUN, data]);
 
     return (
         <section className={cn('burger-constructor', 'pt-25')}>
-            <Item data={data.find((item) => item.type === 'bun')} isTop />
+            <Item data={bunDataElement} isTop />
             <div className={cn('burger-constructor_items-wrapper')}>
-                {data.filter((item) => item.type !== 'bun').map((item) => <Item data={item} key={data.id}/>)}
+                {mainDataElements.map((item) => <Item data={item} key={item._id}/>)}
             </div>
-            <Item data={data.find((item) => item.type === 'bun')} isBottom />
+            <Item data={bunDataElement} isBottom />
             <div className={cn('burger-constructor_order-wrapper', 'pt-5 pr-4')}>
                 <span className={cn('burger-constructor_order-result', 'text text_type_digits-medium mr-4')}>610</span>
                 <CurrencyIcon type="primary" />
@@ -32,7 +41,7 @@ const BurgerConstructor = ({ data }) => {
 }
 
 BurgerConstructor.propTypes = {
-    data: PropTypes.arrayOf(dataPropTypes)
+    data: PropTypes.arrayOf(dataPropTypes).isRequired
 };
 
 export default BurgerConstructor;

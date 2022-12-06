@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 
 import style from '../app-header.module.scss';
@@ -19,5 +20,12 @@ const NavItem = ({ Icon, text, isActive, className }) => {
         </a>
     )
 }
+
+NavItem.propTypes = {
+    Icon: PropTypes.func.isRequired,
+    text: PropTypes.string,
+    isActive: PropTypes.bool,
+    className: PropTypes.string
+};
 
 export default NavItem;
