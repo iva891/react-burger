@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import classnames from 'classnames/bind';
 import PropTypes from 'prop-types';
 
@@ -15,9 +15,7 @@ const BurgerIngredients = ({ data }) => {
 
     const { BUN, SAUCE, MAIN } = INGREDIENTS_TYPES;
 
-    const getElementsByType = useMemo(() => {
-        return (type) => data.filter((item) => item.type === type);
-    }, [data]);
+    const getElementsByType = useCallback((type) => data.filter((item) => item.type === type), [data]);
 
     return (
         <section className={cn('burger-ingredients', 'pt-10')}>

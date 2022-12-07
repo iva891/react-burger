@@ -15,11 +15,11 @@ const BurgerConstructor = ({ data }) => {
 
     const bunDataElement = useMemo(() => {
         return data.find((item) => item.type === BUN);
-    }, [BUN, data]);
+    }, [data]);
 
     const mainDataElements = useMemo(() => {
         return data.filter((item) => item.type !== BUN);
-    }, [BUN, data]);
+    }, [data]);
 
     return (
         <section className={cn('burger-constructor', 'pt-25')}>
