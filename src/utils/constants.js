@@ -18,3 +18,5 @@ export const INGREDIENTS_TYPES = {
     SAUCE: 'sauce',
     MAIN: 'main'
 };
+
+export const url = 'https://norma.nomoreparties.space/api/ingredients';

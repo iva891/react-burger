@@ -1,0 +1,26 @@
+
+.ingredient-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &_img {
+    width: 480px;
+    height: 240px;
+  }
+
+  &_list {
+    list-style-type: none;
+    display: flex;
+    gap: 0 20px;
+    margin: 0;
+    padding: 0;
+  }
+
+  &_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 112px;
+  }
+}

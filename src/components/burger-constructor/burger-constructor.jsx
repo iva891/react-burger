@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 
@@ -7,11 +7,23 @@ import { CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-co
 import Item from "./item/item";
 import { dataPropTypes, INGREDIENTS_TYPES } from '../../utils/constants';
 import style from './burger-constructor.module.scss';
+import Modal from "../modal/modal";
+import OrderDetails from "../order-details/order-details";
 
 const cn = classnames.bind(style);
 
 const BurgerConstructor = ({ data }) => {
     const { BUN } = INGREDIENTS_TYPES;
+
+    const [isShowModal, setIsShowModal] = useState(false);
+
+    const openModal = () => {
+        setIsShowModal(true);
+    }
+
+    const closeModal = () => {
+        setIsShowModal(false);
+    }
 
     const bunDataElement = useMemo(() => {
         return data.find((item) => item.type === BUN);
@@ -31,11 +43,11 @@ const BurgerConstructor = ({ data }) => {
             <div className={cn('burger-constructor_order-wrapper', 'pt-5 pr-4')}>
                 <span className={cn('burger-constructor_order-result', 'text text_type_digits-medium mr-4')}>610</span>
                 <CurrencyIcon type="primary" />
-                <Button htmlType="button" type="primary" size="large" extraClass="ml-10">
+                <Button htmlType="button" type="primary" size="large" extraClass="ml-10" onClick={openModal}>
                     Оформить заказ
                 </Button>
             </div>
-
+            {isShowModal && <Modal onClose={closeModal} children={<OrderDetails />}/>}
         </section>
     )
 }
