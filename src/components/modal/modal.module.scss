@@ -1,0 +1,26 @@
+@import 'src/vars';
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 720px;
+  background-color: $modal-bg;
+  border-radius: 40px;
+
+  &_header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 64px;
+  }
+
+  &_title {
+    margin-right: auto;
+  }
+
+  & svg {
+    cursor: pointer;
+  }
+}
