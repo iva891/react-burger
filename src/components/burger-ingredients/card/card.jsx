@@ -34,7 +34,10 @@ const Card = ({ data }) => {
                 </div>
                 <div className={cn('card_quantity', 'text text_type_digits-default')}>1</div>
             </div>
-            {isShowModal && <Modal title={'Детали ингредиента'} onClose={closeModal} children={<IngredientDetails data={data}/>}/>}
+            {isShowModal && (<Modal title={'Детали ингредиента'} onClose={closeModal}>
+                    <IngredientDetails data={data} />
+                </Modal>
+            )}
         </>
     )
 }

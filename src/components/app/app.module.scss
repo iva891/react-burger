@@ -35,3 +35,36 @@ a {
   margin: 0 auto;
 }
 
+.message {
+  display: flex;
+  justify-content: center;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 50vh;
+  margin: 0 auto;
+}
+.loader:after {
+  content: " ";
+  display: block;
+  width: 164px;
+  height: 164px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 10px solid $primary-light;
+  border-color: $primary-light transparent $primary-light transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

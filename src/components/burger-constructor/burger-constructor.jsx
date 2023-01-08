@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 
-import { CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import Item from "./item/item";
 import { dataPropTypes, INGREDIENTS_TYPES } from '../../utils/constants';
@@ -33,11 +33,15 @@ const BurgerConstructor = ({ data }) => {
         return data.filter((item) => item.type !== BUN);
     }, [data]);
 
+    if(!data.length) {
+        return null;
+    }
+
     return (
         <section className={cn('burger-constructor', 'pt-25')}>
             <Item data={bunDataElement} isTop />
             <div className={cn('burger-constructor_items-wrapper')}>
-                {mainDataElements.map((item) => <Item data={item} key={item._id}/>)}
+                {mainDataElements.map((item) => <Item data={item} key={item._id} />)}
             </div>
             <Item data={bunDataElement} isBottom />
             <div className={cn('burger-constructor_order-wrapper', 'pt-5 pr-4')}>
@@ -47,13 +51,16 @@ const BurgerConstructor = ({ data }) => {
                     Оформить заказ
                 </Button>
             </div>
-            {isShowModal && <Modal onClose={closeModal} children={<OrderDetails />}/>}
+            {isShowModal && (<Modal onClose={closeModal}>
+                    <OrderDetails />
+                </Modal>
+            )}
         </section>
     )
 }
 
 BurgerConstructor.propTypes = {
-    data: PropTypes.arrayOf(dataPropTypes).isRequired
+    data: PropTypes.arrayOf(dataPropTypes)
 };
 
 export default BurgerConstructor;

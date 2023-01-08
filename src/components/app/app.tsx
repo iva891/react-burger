@@ -4,6 +4,7 @@ import AppHeader from "../app-header/app-header";
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { url } from "../../utils/constants";
+import { getData } from '../../utils/helpers/get-data';
 
 import style from './app.module.scss';
 
@@ -11,28 +12,30 @@ function App() {
 
     const [state, setState] = useState({
         data: [],
-        pending: true
+        pending: true,
+        error: null
     });
 
     useEffect(() => {
         setState({ ...state, pending: true })
-        fetch(url)
-            .then(response => response.json())
-            .then(data => setState({ ...state, data: data.data, pending: false }))
+        getData()
+            .then(data => setState({ ...state, data: data.data, pending: false, error: null }))
             .catch(error => {
-                console.log(error);
-                setState({ ...state, pending: false });
+                setState({ ...state, pending: false, error: error.message });
             })
     }, []);
 
     return (
         <div className={style.App}>
             <AppHeader />
-            {!state.pending &&
-            <main className={style.main}>
-                <BurgerIngredients data={state.data} />
-                <BurgerConstructor data={state.data} />
-            </main>
+            {state.error &&
+            <div className={`mt-10 text text_type_main-large ${style.message}`}>{`Ошибка: ${state.error}`}</div>}
+            {state.pending ?
+                <div className={style.loader} />
+                : <main className={style.main}>
+                    <BurgerIngredients data={state.data} />
+                    <BurgerConstructor data={state.data} />
+                </main>
             }
         </div>
     );
