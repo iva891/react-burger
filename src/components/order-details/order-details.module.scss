@@ -1,3 +1,5 @@
+@import 'src/vars';
+
 .order-details {
   display: flex;
   flex-direction: column;
@@ -6,5 +8,32 @@
   &_id-number {
     text-shadow: 0 0 16px rgba(51, 51, 255, 0.25), 0 0 8px rgba(51, 51, 255, 0.25), 0 4px 32px rgba(51, 51, 255, 0.5);
   }
+}
 
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 50%;
+  margin: 0 auto;
+}
+.loader:after {
+  content: " ";
+  display: block;
+  width: 164px;
+  height: 164px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 10px solid $primary-light;
+  border-color: $primary-light transparent $primary-light transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

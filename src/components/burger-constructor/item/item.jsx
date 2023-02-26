@@ -17,13 +17,23 @@ const Item = ({ data, isTop, isBottom }) => {
 
     const isLocked = isTop || isBottom;
 
+    const getBunPosition = () => {
+        if(isTop) {
+            return ' (верх)'
+        }
+        if(isBottom) {
+            return ' (низ)'
+        }
+        return '';
+    }
+
     return (
         <div className={cn('item_wrapper', 'mr-3 mb-4')}>
             {!isLocked && <DragIcon type="primary" />}
             <ConstructorElement
                 type={type}
                 isLocked={isLocked}
-                text={data.name}
+                text={`${data.name}${getBunPosition()}`}
                 price={data.price}
                 thumbnail={data.image}
                 extraClass={isBottom && 'mt-6'}
