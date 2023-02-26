@@ -1,0 +1,24 @@
+@import 'src/vars';
+
+.burger-constructor {
+  max-width: 600px;
+  width: 100%;
+
+  &_items-wrapper {
+    height: calc(100vh - 616px);
+    overflow: auto;
+  }
+
+  &_order-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+  }
+
+}
+
+.item_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
