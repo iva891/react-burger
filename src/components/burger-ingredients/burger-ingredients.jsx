@@ -15,7 +15,7 @@ const BurgerIngredients = () => {
     const { data } = ingredientsData;
     const { BUN, SAUCE, MAIN } = INGREDIENTS_TYPES;
 
-    const [current, setCurrent] = useState('bun');
+    const [current, setCurrent] = useState(BUN);
 
     const ingredientsRef = useRef([]);
 
