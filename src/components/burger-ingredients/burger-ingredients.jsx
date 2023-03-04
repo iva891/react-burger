@@ -1,19 +1,21 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useContext, useRef, useState } from 'react';
 import classnames from 'classnames/bind';
-import PropTypes from 'prop-types';
 
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import Card from './card/card';
 
 import style from './burger-ingredients.module.scss';
-import { dataPropTypes, INGREDIENTS_TYPES } from '../../utils/constants';
+import { INGREDIENTS_TYPES } from '../../utils/constants';
+import { DataContext } from "../../utils/context/app-context";
 
 const cn = classnames.bind(style);
 
-const BurgerIngredients = ({ data }) => {
+const BurgerIngredients = () => {
+    const [ingredientsData] = useContext(DataContext);
+    const { data } = ingredientsData;
     const { BUN, SAUCE, MAIN } = INGREDIENTS_TYPES;
 
-    const [current, setCurrent] = useState('bun');
+    const [current, setCurrent] = useState(BUN);
 
     const ingredientsRef = useRef([]);
 
@@ -64,9 +66,5 @@ const BurgerIngredients = ({ data }) => {
         </section>
     )
 }
-
-BurgerIngredients.propTypes = {
-    data: PropTypes.arrayOf(dataPropTypes)
-};
 
 export default BurgerIngredients;

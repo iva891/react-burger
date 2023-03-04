@@ -22,3 +22,33 @@
   justify-content: flex-end;
   align-items: center;
 }
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  transform: translate(-50%, -50%);
+}
+.loader:after {
+  content: " ";
+  display: block;
+  width: 164px;
+  height: 164px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 10px solid $primary-light;
+  border-color: $primary-light transparent $primary-light transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
